@@ -1,6 +1,7 @@
 // Implement debouncing for network request
 // On clicking book now store the selected movie in localstorage as key "movie"
 // so that you can retrive it on checkout.html page
+let arr=[];
 let sa;
 async function showMovie(){
     
@@ -31,12 +32,26 @@ function appendMovie(data){
         id.innerText=el.imdbID;
         let img=document.createElement("img");
         img.src=el.Poster;
-        movies.append(title,year,id,img);
+        let button=document.createElement("button")
+        button.innerText="book now";
+        button.addEventListener("click",function(){
+            addMovie(el)
+        })
+
+        movies.append(title,year,id,img,button);
 
 
     })
 
 }
+function addMovie(el){
+    arr.push(el);
+
+    localStorage.setItem("movie",JSON.stringify(arr))
+    window.location.href="checkout.html";
+}
+
+
 async function main(){
     let data=await showMovie();
     appendMovie(data);
