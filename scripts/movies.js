@@ -34,6 +34,7 @@ function appendMovie(data){
         img.src=el.Poster;
         let button=document.createElement("button")
         button.innerText="book now";
+        button.setAttribute("name","button")
         button.addEventListener("click",function(){
             addMovie(el)
         })
